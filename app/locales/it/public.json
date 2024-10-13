@@ -2,7 +2,6 @@
   "general": {
     "phone": "388 877 0022",
     "address_extended": "Piazzale Caiazzo, 2 Milano, 20124, Italia Vicino a fermata metro verde M2 Caiazzo",
-    "office_hours": "Lunedì - Sabato: 9:00 - 19:00",
     "email": "info@infinitydoc.it"
   },
   "menu": {
@@ -15,7 +14,7 @@
     "book": "Prenota online"
   },
   "header": {
-    "office_hours_intro": "Orari ambulatorio:",
+    "office_hours_intro": "Disponibilità dello studio medico per prenotare un appuntamento 24/7",
     "cta_booking": "Prenota online"
   },
   "hero": {
@@ -139,38 +138,21 @@
     ]
   },
   "cures": {
-    "intro": "Le nostre cure",
+    "intro": "Fissa il tuo appuntamento",
     "title": "Investi ora nel tuo benessere",
-    "description": "Con Infinitydoc hai la possibilita di ottenere risoluzioni immediata nel momento giusto. Qualunque cosa succede noi siamo in grado di darti un primo orientamento per ottenere i migliori risultati nel piu breve tempo possibili. Ecco un elenco Delle problematiche piu frequentemente risolte con i nostril consulti.",
+    "description": "Con Infinitydoc hai la possibilita di ottenere risoluzioni immediata nel momento giusto. Qualunque cosa succede noi siamo in grado di darti un primo orientamento per ottenere i migliori risultati nel piu breve tempo possibili.",
     "content": {
       "list": [
-        "Tosse, raffreddore, febbre",
-        "Infezioni del tratto urinario",
-        "Intossicazione alimentare, diarrea",
-        "Occhio rosa",
-        "Mal di gola, mal di gola",
-        "Infezioni sinusali, dolore all'orecchio",
-        "Infezioni da lieviti vaginali",
-        "Vaginosi batterica",
-        "Ipotiroidismo",
-        "Ordine di laboratorio per le malattie sessualmente trasmissibili",
-        "Ricariche di prescrizione",
-        "Eruzione cutanea ed eczema",
-        "Punture di insetti, infezioni della pelle",
-        "Asma",
-        "Reflusso acido",
-        "Acne",
-        "Disfunzione erettile",
-        "Herpes genitale",
-        "Herpes labiale",
-        "Gotta"
+        "Ambulatorio medico (Visita medica)",
+        "Servizio medico a distanza (Consulenza medica online o telefonica)",
+        "Servizio medico a domicilio (Visita medica a domicilio)"
       ]
     }
   },
   "mission": {
     "intro": "La nostra missione",
-    "title": "Rendere l'assistenza medica più accessibile e conveniente",
-    "description": "Vogliamo alzare il livello di qualità dell'assistenza medica in Italia e rendere l'accesso ai servizi sanitari più semplice e conveniente."
+    "title": "Fornire un'assistenza Medica più accessibile e rapida",
+    "description": "Accesso diretto ai servizi di Medicina Generale Privata a pagamento (Fissa il tuo appuntamento online)"
   },
   "faq": {
     "title": "Domande frequenti",

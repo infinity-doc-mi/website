@@ -1,45 +1,55 @@
-import { redirect, type LoaderFunctionArgs, type MetaFunction, json } from '@remix-run/cloudflare'
-import { serviceCardsIconMap } from './content'
-import { CheckCircle, PhoneCall, WhatsappLogo, EnvelopeSimple } from '@phosphor-icons/react/dist/ssr'
-import { Title } from '@src/_ref/title'
-import { ServiceCard } from './components/service-card'
-import { WhatsappButton } from './components/whatsapp-button'
-import it from '../../locales/it/public.json'
-import en from '../../locales/en/public.json'
-import cn from '../../locales/cn/public.json'
-import { useLoaderData } from '@remix-run/react'
-import { Dialog } from '@src/ui.web/dialog'
+import {
+  json,
+  type LoaderFunctionArgs,
+  type MetaFunction,
+  redirect,
+} from "@remix-run/cloudflare";
+import { serviceCardsIconMap } from "./content";
+import {
+  CheckCircle,
+  EnvelopeSimple,
+  PhoneCall,
+  WhatsappLogo,
+} from "@phosphor-icons/react/dist/ssr";
+import { Title } from "@src/_ref/title";
+import { ServiceCard } from "./components/service-card";
+import { WhatsappButton } from "./components/whatsapp-button";
+import it from "../../locales/it/public.json";
+import en from "../../locales/en/public.json";
+import cn from "../../locales/cn/public.json";
+import { useLoaderData } from "@remix-run/react";
+import { Dialog } from "@src/ui.web/dialog";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'Home | InfinityDoc' },
+    { title: "Home | InfinityDoc" },
     {
-      name: 'description',
-      content: 'Infinitydoc, dove la tua salute viene prima di tutto',
+      name: "description",
+      content: "Infinitydoc, dove la tua salute viene prima di tutto",
     },
-  ]
-}
+  ];
+};
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const { lang } = params
+  const { lang } = params;
 
   if (!lang) {
-    return redirect('/it')
+    return redirect("/it");
   }
 
   switch (lang) {
-    case 'en':
-      return json({ t: en })
-    case 'cn':
-      return json({ t: cn })
+    case "en":
+      return json({ t: en });
+    case "cn":
+      return json({ t: cn });
 
     default:
-      return json({ t: it })
+      return json({ t: it });
   }
-}
+};
 
 export default function IndexPage() {
-  const { t } = useLoaderData<typeof loader>()
+  const { t } = useLoaderData<typeof loader>();
 
   return (
     <div className="relative overflow-x-hidden pt-10 lg:pt-20 text-primary">
@@ -63,10 +73,10 @@ export default function IndexPage() {
           </div>
           <div className="flex flex-col gap-6">
             <h1 className="animate-fade-rotate-in-lg text-4xl font-medium opacity-0 delay-200 md:text-5xl lg:text-7xl">
-              {t['hero']['title']}
+              {t["hero"]["title"]}
             </h1>
             <p className="animate-fade-rotate-in-lg tracking-wide text-secondary opacity-0 delay-500 lg:text-lg">
-              {t['hero']['description']}
+              {t["hero"]["description"]}
             </p>
           </div>
         </div>
@@ -105,61 +115,102 @@ export default function IndexPage() {
       </div>
 
       <div className="flex flex-col gap-7 py-20">
+        <section className="relative flex flex-col gap-14 py-20">
+          <img
+            src="/assets/blob.svg"
+            alt="blob"
+            className="absolute right-48 top-0 will-change-transform"
+          />
+
+          <div className="container flex flex-col justify-between gap-10">
+            <div className="flex flex-col gap-4">
+              <span className="text-lg font-medium uppercase text-brand">
+                {t["cures"]["intro"]}
+              </span>
+              <Title of="section">{t["cures"]["title"]}</Title>
+              <p className="text-lg text-secondary">
+                {t["cures"]["description"]}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              {t["cures"]["content"]["list"].map((r, i) => (
+                <a
+                  key={i}
+                  href="https://wa.me/c/393888770022"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 flex flex-1 items-center gap-4 bg-brand/20 rounded-lg"
+                >
+                  <CheckCircle className="h-10 w-10 text-brand" />
+                  <span className="flex-1 text-lg font-semibold">{r}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <div className="container flex flex-col gap-4">
           <span
             id="services"
             className="animate-fade-rotate-in-lg text-base font-medium uppercase text-brand opacity-0 md:text-lg"
           >
-            {t['services']['intro']}
+            {t["services"]["intro"]}
           </span>
           <Title as="h2" of="section">
-            {t['services']['title']}
+            {t["services"]["title"]}
           </Title>
           <p className="text-lg text-secondary">
-            {t['services']['description']}
+            {t["services"]["description"]}
           </p>
         </div>
 
         <div className="container grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
-          {t['services']['content']['list'].map((c, i) => (
+          {t["services"]["content"]["list"].map((c, i) => (
             <ServiceCard key={i}>
               <ServiceCard.Icon>{serviceCardsIconMap[i]()}</ServiceCard.Icon>
-              <ServiceCard.Title>{c['title']}</ServiceCard.Title>
+              <ServiceCard.Title>{c["title"]}</ServiceCard.Title>
               <ServiceCard.Description>
-                {c['description']}
+                {c["description"]}
               </ServiceCard.Description>
               <ServiceCard.Action>
-                <Dialog caption={c['cta']}>
+                <Dialog caption={c["cta"]}>
                   <div className="flex flex-col gap-5 py-8">
                     <div className="flex w-full flex-col gap-4 px-6">
                       <h1 className="text-3xl font-medium text-brand">
-                        {c['title']}
+                        {c["title"]}
                       </h1>
                     </div>
                     <div className="flex flex-col gap-4 px-8">
-                      <p>{c['description']} </p>
+                      <p>{c["description"]}</p>
                       <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                         <a
-                          href={`https://wa.me/393888770022?text=Salve%21%20Sono%20interessato%20a%20prenotare%20una%20${encodeURI(c['title'].toUpperCase())}%2C%20preferibilmente%20%28specifica%20quando%29.`}
+                          href={`https://wa.me/393888770022?text=Salve%21%20Sono%20interessato%20a%20prenotare%20una%20${
+                            encodeURI(c["title"].toUpperCase())
+                          }%2C%20preferibilmente%20%28specifica%20quando%29.`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group flex flex-1 items-center gap-3 whitespace-nowrap rounded-lg border-brand bg-brand px-6 py-3 text-center font-medium capitalize leading-5 text-white ring-brand-light transition-opacity hover:bg-opacity-75 focus:outline-none focus:ring-4 disabled:opacity-50 disabled:hover:bg-opacity-100 lg:order-2 2xl:leading-5"
                         >
                           <WhatsappLogo className="h-6 w-6" />
-                            Whatsapp
+                          Whatsapp
                         </a>
                         <a
-                          href={`mailto:info@infinitydoc.it?subject=Prenotazione%20${encodeURI(
-                            c['title'].toUpperCase(),
-                          )}&body=Salve%21%20Sono%20interessato%20a%20prenotare%20una%20${encodeURI(
-                            c['title'].toUpperCase(),
-                          )}%2C%20preferibilmente%20%28specifica%20quando%29.`}
+                          href={`mailto:info@infinitydoc.it?subject=Prenotazione%20${
+                            encodeURI(
+                              c["title"].toUpperCase(),
+                            )
+                          }&body=Salve%21%20Sono%20interessato%20a%20prenotare%20una%20${
+                            encodeURI(
+                              c["title"].toUpperCase(),
+                            )
+                          }%2C%20preferibilmente%20%28specifica%20quando%29.`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group flex flex-1 items-center gap-3 whitespace-nowrap rounded-lg border-brand bg-brand px-6 py-3 text-center font-medium capitalize leading-5 text-white ring-brand-light transition-opacity hover:bg-opacity-75 focus:outline-none focus:ring-4 disabled:opacity-50 disabled:hover:bg-opacity-100 lg:order-2 2xl:leading-5"
                         >
                           <EnvelopeSimple className="h-6 w-6" />
-                            Email
+                          Email
                         </a>
                         <a
                           href="tel:+393888770022"
@@ -168,12 +219,11 @@ export default function IndexPage() {
                           className="group flex flex-1 items-center gap-3 whitespace-nowrap rounded-lg border-brand bg-brand px-6 py-3 text-center font-medium capitalize leading-5 text-white ring-brand-light transition-opacity hover:bg-opacity-75 focus:outline-none focus:ring-4 disabled:opacity-50 disabled:hover:bg-opacity-100 lg:order-2 2xl:leading-5"
                         >
                           <PhoneCall className="h-6 w-6" />
-                            Telefono
+                          Telefono
                         </a>
                       </div>
                     </div>
                   </div>
-
                 </Dialog>
               </ServiceCard.Action>
             </ServiceCard>
@@ -181,44 +231,15 @@ export default function IndexPage() {
         </div>
       </div>
 
-      <section className="relative flex flex-col gap-14 py-20">
-        <img
-          src="/assets/blob.svg"
-          alt="blob"
-          className="absolute right-48 top-0 will-change-transform"
-        />
-
-        <div className="container flex flex-col justify-between gap-10">
-          <div className="flex flex-col gap-4">
-            <span className="text-lg font-medium uppercase text-brand">
-              {t['cures']['intro']}
-            </span>
-            <Title of="section">{t['cures']['title']}</Title>
-            <p className="text-lg text-secondary">
-              {t['cures']['description']}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {t['cures']['content']['list'].map((r, i) => (
-              <div key={i} className="flex flex-1 items-center gap-4">
-                <CheckCircle className="h-10 w-10 text-brand" />
-                <span className="flex-1 text-lg">{r}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="bg-brand/10 py-20">
         <div className="container flex flex-col items-center justify-between gap-10 md:flex-row-reverse md:gap-20">
           <div className="flex flex-col gap-4">
             <span className="text-lg font-medium uppercase text-brand">
-              {t['mission']['intro']}
+              {t["mission"]["intro"]}
             </span>
-            <Title of="section">{t['mission']['title']}</Title>
+            <Title of="section">{t["mission"]["title"]}</Title>
             <p className="text-lg text-secondary">
-              {t['mission']['description']}
+              {t["mission"]["description"]}
             </p>
           </div>
 
@@ -236,11 +257,11 @@ export default function IndexPage() {
         <div className="flex flex-col items-center justify-center gap-10 py-8 lg:py-20">
           <div className="flex max-w-3xl flex-col justify-center gap-5 text-center">
             <span className="animate-fade-in text-lg font-medium uppercase text-brand opacity-0">
-              {t['contacts']['intro']}
+              {t["contacts"]["intro"]}
             </span>
-            <Title of="section">{t['contacts']['title']}</Title>
+            <Title of="section">{t["contacts"]["title"]}</Title>
             <p className="animate-fade-rotate-in-lg text-lg text-secondary opacity-0 delay-500">
-              {t['contacts']['description']}
+              {t["contacts"]["description"]}
             </p>
           </div>
 
@@ -251,7 +272,7 @@ export default function IndexPage() {
               className="absolute inset-0"
               title="map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1398.622823347059!2d9.209506224148608!3d45.48499786482145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6dcb62ddc15%3A0xc9f0dbb97cdd103b!2sCaiazzo!5e0!3m2!1sen!2sit!4v1698854624071!5m2!1sen!2sit"
-              style={{ filter: 'grayscale(1) contrast(1.2) opacity(0.4)' }}
+              style={{ filter: "grayscale(1) contrast(1.2) opacity(0.4)" }}
             />
             <div className="relative flex flex-1 flex-wrap rounded bg-white py-6 shadow-md">
               <div className="px-6 lg:w-1/2">
@@ -262,7 +283,7 @@ export default function IndexPage() {
                   Piazzale Caiazzo, 2 Milano, 20124, Italia Vicino a fermata
                   metro verde M2 Caiazzo
                   <a
-                    href="https://maps.app.goo.gl/bbAJ6GcJN4pi2N246"
+                    href="https://maps.app.goo.gl/eMKQwTBYpkckVNfp7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-brand underline"
@@ -284,7 +305,7 @@ export default function IndexPage() {
                 <h2 className="mt-4 font-semibold tracking-widest text-brand">
                   Telefono
                 </h2>
-                <p className="leading-relaxed">388 877 0022</p>
+                <p className="leading-relaxed">+39 388 877 0022</p>
               </div>
             </div>
           </div>
@@ -293,5 +314,5 @@ export default function IndexPage() {
 
       <WhatsappButton />
     </div>
-  )
+  );
 }

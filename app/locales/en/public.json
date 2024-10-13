@@ -2,7 +2,6 @@
   "general": {
     "phone": "0039 388 877 0022",
     "address_extended": "Piazzale Caiazzo, 2 Milano, 20124, Italia Vicino a fermata metro verde M2 Caiazzo",
-    "office_hours": "Monday - Saturday: 9:00 - 19:00",
     "email": "info@infinitydoc.it"
   },
   "menu": {
@@ -15,12 +14,12 @@
     "book": "Book online"
   },
   "header": {
-    "office_hours_intro": "Clinic Opening hours:",
+    "office_hours_intro": "Doctor Office availability to schedule appointment 24/7",
     "cta_booking": "Book now"
   },
   "hero": {
-    "title": " Consult a doctor in just a few steps ",
-    "description": " With infinitydoc you have the possibility to talk to a local doctor wherever you are whenever you are .",
+    "title": " Consult a Doctor in few steps ",
+    "description": " Infinitydoc gives you access to interact directly with a General Private Doctor.",
     "cta_discover": " Find out more."
   },
   "services": {
@@ -127,38 +126,21 @@
     ]
   },
   "cures": {
-    "intro": "Most commonly treated consitions",
+    "intro": "Schedule your appointment",
     "title": "Invest now in your future’s wellbeing",
-    "description": "With Infinitydoc you have the possibility to get immediate remedies at the right time. Whatever happens we are able to give you initial guidance to obtain the best results in the shortest possible time. Here is a list of the most frequently resolved conditions with our consultations.",
+    "description": "With Infinitydoc you have the possibility to get immediate remedies at the right time. Whatever happens we are able to give you initial guidance to obtain the best results in the shortest possible time. Schedule your appointment by selecting one of these scervices below:",
     "content": {
       "list": [
-        "Cough, cold, fever",
-        "Urinary tract infections",
-        "Food poisoning, diarrhea",
-        "Pink Eye",
-        "Sore throat, sore throat",
-        "Sinus infections, ear pain",
-        "Vaginal yeast infections",
-        "Bacterial Vaginosis",
-        "Hypothyroidism",
-        "Laboratory order for sexually transmitted diseases",
-        "Prescription Refills",
-        "Skin rash and eczema",
-        "Insect bites, skin infections",
-        "Asthma",
-        "Acid reflux",
-        "Acne",
-        "Erectile Dysfunction",
-        "Genital herpes",
-        "Cold sores",
-        "Gout"
+        "Doctor's office (Medical Visit)",
+        "Remote Medical Service (Online or phone medical consult)",
+        "House call Medical Service (Home Medical Visit)"
       ]
     }
   },
   "mission": {
     "intro": "Our mission",
-    "title": " Making medical care more accessible and affordable ",
-    "description": " We want to raise the quality level of medical care in Milan and make access to health services simpler and more convenient."
+    "title": " Making Medical Care more accessible and quick",
+    "description": " We wish to assure you medical care and make a quick access to an English Speaking Doctor."
   },
   "faq": {
     "title": "Frequently asked questions",

@@ -1,59 +1,59 @@
 import {
-  redirect,
-  type LoaderFunctionArgs,
-  json,
   type ActionFunctionArgs,
-} from '@remix-run/cloudflare'
-import { Outlet, useFetcher, useLoaderData } from '@remix-run/react'
-import { createHost, createSlot } from 'create-slots'
-import { Clock, MapPin, Phone } from '@phosphor-icons/react/dist/ssr'
+  json,
+  type LoaderFunctionArgs,
+  redirect,
+} from "@remix-run/cloudflare";
+import { Outlet, useFetcher, useLoaderData } from "@remix-run/react";
+import { createHost, createSlot } from "create-slots";
+import { Clock, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 
-import { publicLinks } from '@app/links/public'
-import { Footer } from './components/footer'
-import { Select } from '@src/ui.web/select'
-import { type Language, Languages, LanguagesConfig } from '@app/locales/config'
+import { publicLinks } from "@app/links/public";
+import { Footer } from "./components/footer";
+import { Select } from "@src/ui.web/select";
+import { type Language, Languages, LanguagesConfig } from "@app/locales/config";
 
-import it from '../../locales/it/public.json'
-import en from '../../locales/en/public.json'
-import cn from '../../locales/cn/public.json'
+import it from "../../locales/it/public.json";
+import en from "../../locales/en/public.json";
+import cn from "../../locales/cn/public.json";
 
 export const action = async ({ request }: ActionFunctionArgs) => {
-  const fd = Object.fromEntries(await request.formData())
-  const { _action, ...values } = fd
+  const fd = Object.fromEntries(await request.formData());
+  const { _action, ...values } = fd;
 
-  if (_action === 'change-language') {
-    return redirect(`/${values.lang}`)
+  if (_action === "change-language") {
+    return redirect(`/${values.lang}`);
   }
 
-  return null
-}
+  return null;
+};
 
 export const loader = ({ params }: LoaderFunctionArgs) => {
-  const { lang } = params
+  const { lang } = params;
 
   if (!lang) {
-    return redirect('/it')
+    return redirect("/it");
   }
 
   switch (lang) {
-    case 'en':
-      return json({ t: en, lang: lang as Language })
+    case "it":
+      return json({ t: it, lang: lang as Language });
 
-    case 'cn':
-      return json({ t: cn, lang: lang as Language })
+    case "cn":
+      return json({ t: cn, lang: lang as Language });
 
     default:
-      return json({ t: it, lang: lang as Language })
+      return json({ t: en, lang: lang as Language });
   }
-}
+};
 
 export default function IndexRouteLayout() {
-  const { t, lang } = useLoaderData<typeof loader>()
+  const { t, lang } = useLoaderData<typeof loader>();
 
-  const f = useFetcher()
+  const f = useFetcher();
 
   function changeLanguage(lang: string) {
-    f.submit({ _action: 'change-language', lang }, { method: 'POST' })
+    f.submit({ _action: "change-language", lang }, { method: "POST" });
   }
 
   return (
@@ -63,7 +63,7 @@ export default function IndexRouteLayout() {
           <div className="hidden items-center gap-3 lg:flex">
             <div className="flex items-center gap-2">
               <Phone size={20} className="stroke-1" />
-              <span>388 877 0022</span>
+              <span>+39 388 877 0022</span>
             </div>
             <span>|</span>
             <div className="flex items-center gap-2">
@@ -74,9 +74,8 @@ export default function IndexRouteLayout() {
           <div className="flex w-full items-center justify-center gap-3 text-sm lg:w-auto lg:text-base">
             <Clock size={20} className="stroke-1" />
             <span className="hidden lg:block">
-              {t['header']['office_hours_intro']}
+              {t["header"]["office_hours_intro"]}
             </span>
-            <span>{t['general']['office_hours']}</span>
           </div>
         </>
       </Layout.Topbar>
@@ -85,15 +84,15 @@ export default function IndexRouteLayout() {
           <publicLinks.home />
           <div className="flex gap-7">
             <div className="hidden gap-7 lg:flex">
-              <publicLinks.services content={t['menu']['services']} />
-              <publicLinks.findUs content={t['menu']['find-us']} />
+              <publicLinks.services content={t["menu"]["services"]} />
+              <publicLinks.findUs content={t["menu"]["find-us"]} />
             </div>
             <f.Form>
               <Select
                 defaultValue={lang}
                 options={Languages}
-                onChange={l => changeLanguage(l)}
-                map={l => (
+                onChange={(l) => changeLanguage(l)}
+                map={(l) => (
                   <div className="flex items-center gap-2 select-none">
                     <img
                       src={LanguagesConfig[l].icon.src}
@@ -107,12 +106,14 @@ export default function IndexRouteLayout() {
             </f.Form>
           </div>
           <div className="hidden lg:block">
-            <publicLinks.booking content={t['menu']['book']} />
+            <publicLinks.booking content={t["menu"]["book"]} />
           </div>
         </div>
-        {/* <div>
+        {
+          /* <div>
           <MobileMenu links={publicLinks} />
-        </div> */}
+        </div> */
+        }
       </Layout.Header>
 
       <Layout.Body>
@@ -123,14 +124,14 @@ export default function IndexRouteLayout() {
         <Footer />
       </Layout.Footer>
     </Layout>
-  )
+  );
 }
 
-const LayoutHost: React.FC<{ children: React.ReactNode }> = ps => {
-  return createHost(ps.children, h => {
+const LayoutHost: React.FC<{ children: React.ReactNode }> = (ps) => {
+  return createHost(ps.children, (h) => {
     return (
       <>
-        <div className="h-12 w-full bg-brand py-3 text-base font-light text-white">
+        <div className="h-12 w-full bg-brand py-3 text-base text-white">
           <div
             {...h.getProps(Layout.Topbar)}
             className="container flex items-center justify-between gap-3"
@@ -143,13 +144,13 @@ const LayoutHost: React.FC<{ children: React.ReactNode }> = ps => {
         <main {...h.getProps(Layout.Body)} />
         <footer {...h.getProps(Layout.Footer)} />
       </>
-    )
-  })
-}
+    );
+  });
+};
 
 const Layout = Object.assign(LayoutHost, {
-  Topbar: createSlot('div'),
-  Header: createSlot('header'),
-  Body: createSlot('main'),
-  Footer: createSlot('footer'),
-})
+  Topbar: createSlot("div"),
+  Header: createSlot("header"),
+  Body: createSlot("main"),
+  Footer: createSlot("footer"),
+});
