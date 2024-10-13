@@ -34,17 +34,17 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { lang } = params;
 
   if (!lang) {
-    return redirect("/it");
+    return redirect("/en");
   }
 
   switch (lang) {
-    case "en":
-      return json({ t: en });
+    case "it":
+      return json({ t: it });
     case "cn":
       return json({ t: cn });
 
     default:
-      return json({ t: it });
+      return json({ t: en });
   }
 };
 

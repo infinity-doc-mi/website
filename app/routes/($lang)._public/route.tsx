@@ -32,7 +32,7 @@ export const loader = ({ params }: LoaderFunctionArgs) => {
   const { lang } = params;
 
   if (!lang) {
-    return redirect("/it");
+    return redirect("/en");
   }
 
   switch (lang) {
