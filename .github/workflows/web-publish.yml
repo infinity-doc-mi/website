@@ -19,7 +19,7 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 5b87e8055cf8e8bb23510817e971122b
+          accountId: 68f9bf7a63a9b5125c7e65c51ff9a2d4
           projectName: infinitydoc-web
           directory: public
           branch: main
