@@ -297,10 +297,10 @@ export default function IndexPage() {
                   Email
                 </h2>
                 <a
-                  href="mailto:info@infinidydoc.it"
+                  href="mailto:info@infinitydoc.it"
                   className="leading-relaxed text-brand"
                 >
-                  info@infinidydoc.it
+                  info@infinitydoc.it
                 </a>
                 <h2 className="mt-4 font-semibold tracking-widest text-brand">
                   Telefono
